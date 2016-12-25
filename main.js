@@ -16,8 +16,8 @@ function checkFCCIsOnline() {
     });
 }
 
-function getFollowers() {
-    var following = [];
+function getFccFollowers() {
+
     $.ajax({
         type: "GET",
         url: "https://api.twitch.tv/kraken/users/freecodecamp/follows/channels",
@@ -27,24 +27,34 @@ function getFollowers() {
         dataType: "json",
         success: function (response) {
             for (let i = 0; i < response.follows.length; i++) {
-                following.push(response.follows[i].channel.name); //These are the users that follows freecodecamp.
+                var displayName = response.follows[i].channel.name;
+
+                var logo = response.follows[i].channel.logo;
+                if (logo === null) {
+                    logo = "http://underscoopfire.com/wp-content/uploads/2012/08/xmen-logo.jpg";
+                }
+
+                var status = response.follows[i].channel.status;
+                if (status === null) {
+                    status = "There is no status";
+                }
+
+                var item  = '<div class = "col-md-4"><img src="' + logo +'"></div>';
+                item += '<div class = "col-md-4">' + displayName +'</div>';
+                item += '<div class = "col-md-4">' + status +'</div>';
+
+                $('#follower-info').append('<div class="row">' + item + '</div>');
             }
         }
-    });
 
-    following = following.concat(["ESL_SC2", "OgamingSC2", "cretetion", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "notexist404"]);
-    return following;
+    });
 }
 
 
 $(document).ready(function () {
 
     checkFCCIsOnline();
-    console.log(getFollowers());
-
-
-
-
+    getFccFollowers();
 
 
 });
