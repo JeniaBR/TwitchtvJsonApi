@@ -1,61 +1,55 @@
-function checkFCCIsOnline() {
-    $.ajax({
+function getChannelInfo(user) {
+    var urlString = "https://wind-bow.gomix.me/twitch-api/channels/" + user;
+    return $.ajax({
         type: "GET",
-        url: "https://api.twitch.tv/kraken/streams/freecodecamp",
-        headers: {
-            'Client-ID': 'vc32dqo0ywu1pyrb7xglzrth88q87o'
-        },
-        dataType: "json",
-        success: function (data) {
-            if (data.stream === null) {
-                $('#fcc-status').html("Free Code Camp is OFFLINE");
-            } else {
-                $('#fcc-status').html("Free Code Camp is ONLINE");
-            }
-        }
+        url: urlString,
+        dataType: "json"
     });
 }
 
-function getFccFollowers() {
-
-    $.ajax({
+function getStreamInfo(user) {
+    var urlString = "https://wind-bow.gomix.me/twitch-api/streams/" + user;
+    return $.ajax({
         type: "GET",
-        url: "https://api.twitch.tv/kraken/users/freecodecamp/follows/channels",
-        headers: {
-            'Client-ID': 'vc32dqo0ywu1pyrb7xglzrth88q87o'
-        },
+        url: urlString,
         dataType: "json",
-        success: function (response) {
-            for (let i = 0; i < response.follows.length; i++) {
-                var displayName = response.follows[i].channel.name;
-
-                var logo = response.follows[i].channel.logo;
-                if (logo === null) {
-                    logo = "http://underscoopfire.com/wp-content/uploads/2012/08/xmen-logo.jpg";
-                }
-
-                var status = response.follows[i].channel.status;
-                if (status === null) {
-                    status = "There is no status";
-                }
-
-                var item  = '<div class = "col-md-4"><img src="' + logo +'"></div>';
-                item += '<div class = "col-md-4">' + displayName +'</div>';
-                item += '<div class = "col-md-4">' + status +'</div>';
-
-                //$('#follower-info').append('<div class="row">' + item + '</div>');
-                $('#app-container').append('<div class="row">' + item + '</div>');                
-            }
-        }
-
     });
+}
+
+function showData(channelInfo, streamInfo) {
+    console.log(streamInfo);
+
+    var logo, displayName, status;
+
+    logo = channelInfo[0].logo;
+    displayName = channelInfo[0].display_name;
+    status = channelInfo[0].status;
+
+    if (channelInfo[0].status === 404) {
+        logo = "https://dinolover1314.files.wordpress.com/2012/07/pagenotfound_icon.png"
+        displayName = channelInfo[0].error;
+        status = channelInfo[0].message;
+    }
+
+    var item = '<div class = "col-xs-4"><img src="' + logo + '"class="img-responsive img-circle" width="150" height="150"></div>';
+    item += '<div class = "col-xs-4">' + displayName + '</div>';
+    item += '<div class = "col-xs-4">' + status + '</div>';
+
+    $('#app-container').append('<div class="row">' + item + '</div>');
+
+}
+
+function getFccFollowers(users) {
+
+    for (let i = 0; i < users.length; i++) {
+        $.when(getChannelInfo(users[i]), getStreamInfo(users[i])).then(showData);
+    }
+
 }
 
 
 $(document).ready(function () {
-
-    checkFCCIsOnline();
-    getFccFollowers();
-
+    var twitchUsers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
+    getFccFollowers(twitchUsers);
 
 });
