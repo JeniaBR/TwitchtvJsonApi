@@ -43,7 +43,8 @@ function getFccFollowers() {
                 item += '<div class = "col-md-4">' + displayName +'</div>';
                 item += '<div class = "col-md-4">' + status +'</div>';
 
-                $('#follower-info').append('<div class="row">' + item + '</div>');
+                //$('#follower-info').append('<div class="row">' + item + '</div>');
+                $('#app-container').append('<div class="row">' + item + '</div>');                
             }
         }
 
