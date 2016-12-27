@@ -1,18 +1,47 @@
-h1{
+h1 {
     color: green;
 }
 
-#app-container{
+.row {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.online {
+    background-color: lightgreen;
+}
+
+.offline {
+    background-color: lightslategray;
+}
+
+.not-exist {
+    background-color: lightcoral;
+}
+
+.user-status {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100px;
+}
+
+#app-container {
     margin-right: auto;
     margin-left: auto;
-    max-width: 960px;
+    max-width: 500px;
     position: relative;
     border-radius: 5px;
     background-color: beige;
     text-align: center;
 }
 
-
-#fcc-status{
+#fcc-status {
     background-color: violet;
 }
