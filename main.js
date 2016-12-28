@@ -34,9 +34,9 @@ function showData(channelInfo, streamInfo) {
         userConnectivity = "not-exist"
     }
 
-    var item = '<div class = "col-xs-4"><img src="' + logo + '"class="img-responsive img-circle" width="100" height="100"></div>';
-    item += '<div class = "col-xs-4">' + displayName + '</div>';
-    item += '<div class = "col-xs-4 user-status">' + onlineUserStatus + '</div>';
+    var item = '<div class = "col-xs-2 col-sm-1"><img src="' + logo + '"class="img-responsive img-circle logo-style"></div>';
+    item += '<div class = "col-xs-10 col-sm-3 display-name">' + displayName + '</div>';
+    item += '<div class = "col-xs-10 col-sm-8 user-status">' + onlineUserStatus + '</div>';
 
     var element = '<div class="row '+ userConnectivity +'" style="display: none;">' + item + '</div>';
 
@@ -57,5 +57,26 @@ function getDataFromTwitchAPI(users) {
 $(document).ready(function () {
     var twitchUsers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
     getDataFromTwitchAPI(twitchUsers);
+
+    $('#online-btn').click(function(){
+        $('.offline').addClass('hidden');
+        $('.not-exist').addClass('hidden');
+        $('.online').removeClass('hidden');
+
+    });
+
+    $('#offline-btn').click(function(){
+        $('.online').addClass('hidden');
+        $('.not-exist').addClass('hidden');
+        $('.offline').removeClass('hidden');
+
+    });
+
+    $('#all-btn').click(function(){
+        $('.offline').removeClass('hidden');
+        $('.not-exist').removeClass('hidden');
+        $('.online').removeClass('hidden');
+
+    });
 
 });

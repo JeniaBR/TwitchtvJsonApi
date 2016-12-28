@@ -3,8 +3,8 @@ h1 {
 }
 
 .row {
-    padding-bottom: 15px;
-    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     margin-left: 0;
     margin-right: 0;
 }
@@ -25,17 +25,24 @@ h1 {
     background-color: lightcoral;
 }
 
-.user-status {
+.logo-style {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    border: 3px solid #e1e1e6;
+}
+
+.user-status,
+.display-name {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 100px;
 }
 
 #app-container {
     margin-right: auto;
     margin-left: auto;
-    max-width: 500px;
+    max-width: 700px;
     position: relative;
     border-radius: 5px;
     background-color: beige;
@@ -44,4 +51,12 @@ h1 {
 
 #fcc-status {
     background-color: violet;
+}
+
+@media (min-width: 768px) {
+    .user-status,
+    .display-name {
+        line-height: 50px;
+        height: 50px;
+    }
 }
