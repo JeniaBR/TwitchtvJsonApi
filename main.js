@@ -18,7 +18,7 @@ function getStreamInfo(user) {
 
 function showData(channelInfo, streamInfo) {
 
-    var logo, displayName, onlineUserStatus, userConnectivity, userLink;
+    var logo, displayName, onlineUserStatus, userConnectivity, userLink,openInNewTab;
 
     streamInfo[0].stream != null ? userConnectivity = "online" : userConnectivity = "offline";
 
@@ -26,6 +26,7 @@ function showData(channelInfo, streamInfo) {
     displayName = channelInfo[0].display_name;
     userConnectivity === 'online' ? onlineUserStatus = channelInfo[0].status : onlineUserStatus = "Offline";
     userConnectivity === 'online' ? userLink = channelInfo[0].url : userLink = "#";
+    userConnectivity === 'online' ? openInNewTab = "_blank" : openInNewTab = "";
 
     if (channelInfo[0].status === 404) {
         logo = "https://dinolover1314.files.wordpress.com/2012/07/pagenotfound_icon.png";
@@ -36,7 +37,7 @@ function showData(channelInfo, streamInfo) {
     }
 
     var item = '<div class = "col-xs-2 col-sm-1"><img src="' + logo + '"class="img-responsive img-circle logo-style"></div>';
-    item += '<div class = "col-xs-10 col-sm-3 display-name"><a href="' + userLink + '" target="_blank" >' + displayName + '</a></div>';
+    item += '<div class = "col-xs-10 col-sm-3 display-name"><a href="' + userLink + '" target="' + openInNewTab +'" >' + displayName + '</a></div>';
     item += '<div class = "col-xs-10 col-sm-8 user-status">' + onlineUserStatus + '</div>';
 
     var element = '<div class="row ' + userConnectivity + '" style="display: none;">' + item + '</div>';
