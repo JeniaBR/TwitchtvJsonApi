@@ -1,7 +1,3 @@
-h1 {
-    color: green;
-}
-
 .row {
     padding-bottom: 5px;
     padding-top: 5px;
@@ -9,25 +5,37 @@ h1 {
     margin-right: 0px;
 }
 
-.container{
+.container {
     padding-left: 0px;
     padding-right: 0px;
 }
 
 .navbar {
     margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.navbar ul{
+    font-family: 'Oswald', sans-serif;
+}
+
+.navbar-brand{
+    font-family: 'Lobster', cursive;
+    font-size: 2em;
 }
 
 .online {
-    background-color: lightgreen;
+    background-color: #300032;
+    color: navajowhite;
 }
 
 .offline {
-    background-color: lightslategray;
+    background-color: #c43235;
+    color: navajowhite;
 }
 
 .not-exist {
-    background-color: lightcoral;
+    background-color: #e6e6e8;
 }
 
 .logo-style {
@@ -44,6 +52,14 @@ h1 {
     text-overflow: ellipsis;
 }
 
+.online a {
+    color: seagreen;
+}
+
+.offline a {
+    color: #300032;
+}
+
 #app-container {
     margin-right: auto;
     margin-left: auto;
@@ -54,14 +70,20 @@ h1 {
     text-align: center;
 }
 
-#fcc-status {
-    background-color: violet;
+#fcc-users{
+    font-family: 'Oswald', sans-serif;
 }
+
+
 
 @media (min-width: 768px) {
     .user-status,
     .display-name {
         line-height: 50px;
         height: 50px;
+    }
+
+    #fcc-users{
+        font-size: 1.5em;
     }
 }
